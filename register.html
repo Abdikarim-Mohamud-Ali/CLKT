@@ -4,10 +4,16 @@
 
 <head>
 
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Create your CLKT account</title>
+
 
 <style>
 
@@ -17,11 +23,15 @@
 
 
     body {
+
         margin: 0;
+
         min-height: 100vh;
 
         display: flex;
+
         justify-content: center;
+
         align-items: center;
 
         background: #f5f5f5;
@@ -29,18 +39,23 @@
         font-family: Arial, Helvetica, sans-serif;
 
         color: #222;
+
     }
 
 
     .container {
+
         width: 100%;
+
         max-width: 430px;
 
         padding: 20px;
+
     }
 
 
     .card {
+
         background: white;
 
         padding: 25px 35px 30px;
@@ -49,38 +64,47 @@
 
         box-shadow:
             0 8px 30px rgba(0, 0, 0, 0.08);
+
     }
 
 
     /* CLKT LOGO */
 
     .brand {
+
         text-align: center;
 
         margin-bottom: 20px;
+
     }
 
 
     .logo {
+
         width: 115px;
+
         height: auto;
 
         display: block;
 
         margin: 0 auto;
+
     }
 
 
     h1 {
+
         margin: 0 0 8px;
 
         font-size: 25px;
 
         text-align: center;
+
     }
 
 
     .subtitle {
+
         margin: 0 0 28px;
 
         text-align: center;
@@ -90,10 +114,12 @@
         font-size: 14px;
 
         line-height: 1.5;
+
     }
 
 
     label {
+
         display: block;
 
         margin-bottom: 7px;
@@ -101,15 +127,17 @@
         font-size: 14px;
 
         font-weight: 600;
+
     }
 
 
     input {
+
         width: 100%;
 
         padding: 13px 14px;
 
-        margin-bottom: 18px;
+        margin-bottom: 7px;
 
         border: 1px solid #d8d8d8;
 
@@ -120,15 +148,32 @@
         outline: none;
 
         transition: border-color 0.2s;
+
     }
 
 
     input:focus {
-        border-color: #E00000;
+
+        border-color: #e00000;
+
+    }
+
+
+    .input-help {
+
+        margin: 0 0 18px;
+
+        color: #888;
+
+        font-size: 12px;
+
+        line-height: 1.4;
+
     }
 
 
     button {
+
         width: 100%;
 
         padding: 14px;
@@ -137,7 +182,7 @@
 
         border-radius: 8px;
 
-        background: #E00000;
+        background: #e00000;
 
         color: white;
 
@@ -148,15 +193,28 @@
         cursor: pointer;
 
         transition: background 0.2s;
+
     }
 
 
     button:hover {
+
         background: #b80000;
+
+    }
+
+
+    button:disabled {
+
+        background: #999;
+
+        cursor: not-allowed;
+
     }
 
 
     #message {
+
         margin: 18px 0 0;
 
         text-align: center;
@@ -164,10 +222,12 @@
         font-size: 14px;
 
         line-height: 1.5;
+
     }
 
 
     .footer {
+
         margin-top: 22px;
 
         text-align: center;
@@ -175,105 +235,162 @@
         color: #999;
 
         font-size: 12px;
+
     }
 
 </style>
+
 
 </head>
 
 <body>
 
+
 <div class="container">
 
 
-<div class="card">
+    <div class="card">
 
 
-    <!-- CLKT LOGO -->
+        <!-- CLKT LOGO -->
 
-    <div class="brand">
+        <div class="brand">
 
-        <img
-            src="https://abdikarim-mohamud-ali.github.io/CLKT-ASSETS/clkt-logo.svg"
-            alt="CLKT logo"
-            class="logo"
-        >
+            <img
+                src="https://abdikarim-mohamud-ali.github.io/CLKT-ASSETS/clkt-logo.svg"
+                alt="CLKT logo"
+                class="logo"
+            >
 
-    </div>
-
-
-    <!-- REGISTRATION -->
-
-    <h1>
-        Create your account
-    </h1>
+        </div>
 
 
-    <p class="subtitle">
-        Join CLKT and connect through voice, conversations and community.
-    </p>
+        <!-- REGISTRATION -->
+
+        <h1>
+            Create your account
+        </h1>
 
 
-    <form id="registerForm">
+        <p class="subtitle">
+
+            Join CLKT and connect through voice,
+            conversations and community.
+
+        </p>
 
 
-        <label for="name">
-            Name
-        </label>
-
-        <input
-            type="text"
-            id="name"
-            placeholder="Enter your name"
-            required
-        >
+        <form id="registerForm">
 
 
-        <label for="email">
-            Email
-        </label>
+            <!-- NAME -->
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            required
-        >
+            <label for="name">
+                Name
+            </label>
 
 
-        <label for="password">
-            Password
-        </label>
-
-        <input
-            type="password"
-            id="password"
-            placeholder="Create a password"
-            required
-        >
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                autocomplete="name"
+                required
+            >
 
 
-        <button type="submit">
-            Create account
-        </button>
-
-    </form>
+            <p class="input-help">
+                Your name can contain spaces and special characters.
+            </p>
 
 
-    <p id="message"></p>
+            <!-- USERNAME -->
+
+            <label for="username">
+                Username
+            </label>
 
 
-    <div class="footer">
-        © 2026 CLKT. All rights reserved.
+            <input
+                type="text"
+                id="username"
+                placeholder="Choose a username"
+                autocomplete="username"
+                minlength="3"
+                maxlength="30"
+                pattern="[a-zA-Z0-9_]+"
+                required
+            >
+
+
+            <p class="input-help">
+                3–30 characters. Letters, numbers and underscores only.
+            </p>
+
+
+            <!-- EMAIL -->
+
+            <label for="email">
+                Email
+            </label>
+
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required
+            >
+
+
+            <!-- PASSWORD -->
+
+            <label for="password">
+                Password
+            </label>
+
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Create a password"
+                autocomplete="new-password"
+                required
+            >
+
+
+            <!-- CREATE ACCOUNT -->
+
+            <button
+                type="submit"
+                id="registerButton"
+            >
+                Create account
+            </button>
+
+
+        </form>
+
+
+        <p id="message"></p>
+
+
+        <div class="footer">
+
+            © 2026 CLKT. All rights reserved.
+
+        </div>
+
+
     </div>
 
 
 </div>
 
-
-</div>
 
 <script src="register.js"></script>
+
 
 </body>
 
