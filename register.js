@@ -115,7 +115,7 @@ registerForm.addEventListener("submit", async function(event) {
 });
 
 
-This now sends:
+
 
 text
 name
