@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Verify your CLKT account</title>
+
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    body {
+        margin: 0;
+
+        min-height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: #f5f5f5;
+
+        font-family: Arial, Helvetica, sans-serif;
+
+        color: #222;
+    }
+
+
+    .container {
+        width: 100%;
+
+        max-width: 430px;
+
+        padding: 20px;
+    }
+
+
+    .card {
+        background: #ffffff;
+
+        padding: 38px 35px 32px;
+
+        border-radius: 16px;
+
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+        text-align: center;
+    }
+
+
+    /* VERIFICATION ICON */
+
+    .icon {
+        width: 64px;
+        height: 64px;
+
+        margin: 0 auto 22px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        background: #E00000;
+
+        color: #ffffff;
+
+        border-radius: 50%;
+
+        font-size: 28px;
+
+        font-weight: 700;
+    }
+
+
+    h1 {
+        margin: 0 0 10px;
+
+        font-size: 25px;
+    }
+
+
+    .description {
+        margin: 0 auto 28px;
+
+        max-width: 330px;
+
+        color: #777;
+
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    form {
+        text-align: left;
+    }
+
+
+    label {
+        display: block;
+
+        margin-bottom: 7px;
+
+        font-size: 14px;
+
+        font-weight: 600;
+    }
+
+
+    input {
+        width: 100%;
+
+        padding: 13px 14px;
+
+        margin-bottom: 18px;
+
+        border: 1px solid #d8d8d8;
+
+        border-radius: 8px;
+
+        font-size: 15px;
+
+        outline: none;
+
+        transition: border-color 0.2s;
+    }
+
+
+    input:focus {
+        border-color: #E00000;
+    }
+
+
+    #code {
+        text-align: center;
+
+        font-size: 22px;
+
+        font-weight: 700;
+
+        letter-spacing: 6px;
+    }
+
+
+    .verify-button {
+        width: 100%;
+
+        padding: 14px;
+
+        border: none;
+
+        border-radius: 8px;
+
+        background: #E00000;
+
+        color: #ffffff;
+
+        font-size: 16px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: background 0.2s;
+    }
+
+
+    .verify-button:hover {
+        background: #c90000;
+    }
+
+
+    #message {
+        margin: 18px 0;
+
+        text-align: center;
+
+        font-size: 14px;
+
+        line-height: 1.5;
+    }
+
+
+    /* RESEND */
+
+    .resend-section {
+        margin-top: 25px;
+
+        padding-top: 22px;
+
+        border-top: 1px solid #eeeeee;
+    }
+
+
+    .resend-text {
+        margin: 0 0 9px;
+
+        color: #777;
+
+        font-size: 13px;
+    }
+
+
+    #resendButton {
+        border: none;
+
+        background: none;
+
+        color: #E00000;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        padding: 5px;
+    }
+
+
+    #resendButton:hover {
+        text-decoration: underline;
+    }
+
+
+    .security-note {
+        margin-top: 20px;
+
+        color: #999;
+
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    .footer {
+        margin-top: 22px;
+
+        color: #aaa;
+
+        font-size: 12px;
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <div class="card">
+
+
+        <!-- VERIFICATION ICON -->
+
+        <div class="icon">
+            ✓
+        </div>
+
+
+        <h1>
+            Verify your email
+        </h1>
+
+
+        <p class="description">
+            We've sent a 6-digit verification code to your email.
+            Enter it below to finish setting up your CLKT account.
+        </p>
+
+
+        <form id="verifyForm">
+
+
+            <label for="email">
+                Email
+            </label>
+
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label for="code">
+                Verification code
+            </label>
+
+
+            <input
+                type="text"
+                id="code"
+                placeholder="000000"
+                maxlength="6"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="verify-button"
+            >
+                Verify email
+            </button>
+
+        </form>
+
+
+        <p id="message"></p>
+
+
+        <!-- RESEND -->
+
+        <div class="resend-section">
+
+            <p class="resend-text">
+                Didn't receive the code?
+            </p>
+
+
+            <button id="resendButton">
+                Resend verification code
+            </button>
+
+        </div>
+
+
+        <p class="security-note">
+            Verification codes expire after 10 minutes.
+        </p>
+
+
+        <div class="footer">
+            © 2026 CLKT. All rights reserved.
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script src="verify.js"></script>
+
+
+</body>
+
+</html>

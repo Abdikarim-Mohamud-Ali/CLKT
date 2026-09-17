@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CLKT.com</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+      <!-- CLKT LOGO -->
+
+      <a href="#" class="brand">
+        <div class="logo-icon">
+          <!-- Left microphone -->
+          <svg class="mic mic-left" viewBox="0 0 24 24">
+            <rect x="8" y="2" width="8" height="12" rx="4"></rect>
+            <path d="M5 10a7 7 0 0 0 14 0"></path>
+            <line x1="12" y1="17" x2="12" y2="22"></line>
+            <line x1="8" y1="22" x2="16" y2="22"></line>
+          </svg>
+
+          <!-- BIG WHITE C -->
+          <span class="logo-c">C</span>
+
+          <!-- Right microphone -->
+          <svg class="mic mic-right" viewBox="0 0 24 24">
+            <rect x="8" y="2" width="8" height="12" rx="4"></rect>
+            <path d="M5 10a7 7 0 0 0 14 0"></path>
+            <line x1="12" y1="17" x2="12" y2="22"></line>
+            <line x1="8" y1="22" x2="16" y2="22"></line>
+          </svg>
+        </div>
+
+        <!-- Text stays OUTSIDE the red box -->
+        <span class="brand-text">clkt.com</span>
+      </a>
+
+      <!-- ================= SEARCH ================= -->
+
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search CLKT..." />
+      </div>
+
+      <!-- ================= NAVIGATION ================= -->
+
+      <nav class="nav-links">
+        <button class="nav-button">Home</button>
+
+        <button class="nav-button">Discover</button>
+
+        <button class="nav-button">Notifications</button>
+
+        <button class="nav-button">Profile</button>
+      </nav>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-container">
+      <!-- ================= LEFT SIDEBAR ================= -->
+
+      <aside class="sidebar left-sidebar">
+        <div class="profile-mini">
+          <div class="profile-picture">U</div>
+
+          <div>
+            <h3>Your Profile</h3>
+            <p>@username</p>
+          </div>
+        </div>
+
+        <div class="sidebar-menu">
+          <button>🏠 Home</button>
+
+          <button>🔎 Discover</button>
+
+          <button>🎙️ My Voice</button>
+
+          <button>👥 Friends</button>
+
+          <button>🔔 Notifications</button>
+
+          <button>⚙️ Settings</button>
+        </div>
+      </aside>
+
+      <!-- ================= FEED ================= -->
+
+      <section class="feed">
+        <!-- CREATE VOICE POST -->
+
+        <div class="create-post">
+          <div class="create-post-top">
+            <div class="profile-picture small">U</div>
+
+            <button class="voice-input" id="voiceInputButton">
+              🎙️ What do you want to say?
+            </button>
+          </div>
+
+          <div class="create-post-actions">
+            <button id="quickVoiceButton">🎙️ Voice</button>
+
+            <button>📷 Photo</button>
+
+            <button>🔗 More</button>
+          </div>
+
+          <!-- VOICE RECORDER -->
+
+          <div class="voice-recorder hidden" id="voiceRecorder">
+            <div class="recording-status">
+              <span class="recording-dot" id="recordingDot"> </span>
+
+              <span id="recordingText"> Ready to record </span>
+            </div>
+
+            <div class="recording-time" id="recordingTime">00:00</div>
+
+            <div class="recording-controls">
+              <button class="record-button" id="startRecordingButton">
+                🎙️ Start
+              </button>
+
+              <button class="stop-button" id="stopRecordingButton" disabled>
+                ⏹ Stop
+              </button>
+            </div>
+
+            <div class="audio-preview" id="audioPreview"></div>
+
+            <button class="publish-button" id="publishVoiceButton" disabled>
+              Publish Voice Post
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= POSTS ================= -->
+
+        <div id="postsContainer">
+          <!-- TEMPORARY POSTS -->
+
+          <article class="post">
+            <div class="post-header">
+              <div class="profile-picture small">A</div>
+
+              <div class="post-user">
+                <h3>Alex</h3>
+
+                <p>@alex · 2h</p>
+              </div>
+
+              <button class="post-menu">⋯</button>
+            </div>
+
+            <div class="voice-post">
+              <button class="play-button">▶</button>
+
+              <div class="voice-waveform">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <span class="voice-duration"> 0:18 </span>
+            </div>
+
+            <p class="post-caption">Just sharing my thoughts today.</p>
+
+            <div class="post-actions">
+              <button>❤️ Like</button>
+
+              <button>💬 Comment</button>
+
+              <button>🔄 Share</button>
+            </div>
+          </article>
+
+          <article class="post">
+            <div class="post-header">
+              <div class="profile-picture small">M</div>
+
+              <div class="post-user">
+                <h3>Maya</h3>
+
+                <p>@maya · 5h</p>
+              </div>
+
+              <button class="post-menu">⋯</button>
+            </div>
+
+            <div class="voice-post">
+              <button class="play-button">▶</button>
+
+              <div class="voice-waveform">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <span class="voice-duration"> 0:24 </span>
+            </div>
+
+            <p class="post-caption">
+              Voice makes conversations feel more human.
+            </p>
+
+            <div class="post-actions">
+              <button>❤️ Like</button>
+
+              <button>💬 Comment</button>
+
+              <button>🔄 Share</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================= RIGHT SIDEBAR ================= -->
+
+      <aside class="sidebar right-sidebar">
+        <!-- PEOPLE TO FOLLOW -->
+
+        <div class="sidebar-card">
+          <h2>People to Follow</h2>
+
+          <div class="suggested-user">
+            <div class="profile-picture small">J</div>
+
+            <div class="suggested-info">
+              <strong> James </strong>
+
+              <span> @james </span>
+            </div>
+
+            <button class="follow-button">Follow</button>
+          </div>
+
+          <div class="suggested-user">
+            <div class="profile-picture small">S</div>
+
+            <div class="suggested-info">
+              <strong> Sarah </strong>
+
+              <span> @sarah </span>
+            </div>
+
+            <button class="follow-button">Follow</button>
+          </div>
+
+          <div class="suggested-user">
+            <div class="profile-picture small">D</div>
+
+            <div class="suggested-info">
+              <strong> David </strong>
+
+              <span> @david </span>
+            </div>
+
+            <button class="follow-button">Follow</button>
+          </div>
+        </div>
+
+        <!-- ================= TRENDING ================= -->
+
+        <div class="sidebar-card">
+          <h2>Trending</h2>
+
+          <div class="trend">
+            <span> Trending </span>
+
+            <strong> #CLKT </strong>
+
+            <small> 12.4K posts </small>
+          </div>
+
+          <div class="trend">
+            <span> Trending </span>
+
+            <strong> #Voice </strong>
+
+            <small> 8.7K posts </small>
+          </div>
+
+          <div class="trend">
+            <span> Trending </span>
+
+            <strong> #Talk </strong>
+
+            <small> 5.2K posts </small>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+      <a href="about.html"> About </a>
+
+      <a href="#"> Privacy </a>
+
+      <a href="#"> Terms </a>
+
+      <a href="contact.html"> Contact & Feedback </a>
+
+      <p>© 2026 CLKT.com. All rights reserved.</p>
+    </footer>
+
+    <!-- ================= MOBILE NAVIGATION ================= -->
+
+    <nav class="mobile-navigation">
+      <button>
+        🏠
+        <span>Home</span>
+      </button>
+
+      <button>
+        🔎
+        <span>Discover</span>
+      </button>
+
+      <button class="mobile-voice-button" id="mobileVoiceButton">🎙️</button>
+
+      <button>
+        🔔
+        <span>Notifications</span>
+      </button>
+
+      <button>
+        👤
+        <span>Profile</span>
+      </button>
+    </nav>
+
+    <!-- ================= JAVASCRIPT ================= -->
+  </body>
+</html>
