@@ -4,6 +4,25 @@ const message = document.getElementById("message");
 
 const resendButton = document.getElementById("resendButton");
 
+// GET THE EMAIL SAVED DURING REGISTRATION
+
+const email = localStorage.getItem("clktVerificationEmail");
+
+// MAKE SURE AN EMAIL EXISTS
+
+if (!email) {
+
+
+message.textContent =
+    "Your registration session could not be found. Please register again.";
+
+verifyForm.style.display = "none";
+
+resendButton.style.display = "none";
+
+
+}
+
 // VERIFY EMAIL
 
 verifyForm.addEventListener("submit", async function(event) {
@@ -12,13 +31,20 @@ verifyForm.addEventListener("submit", async function(event) {
 // Stop the browser from refreshing the page
 event.preventDefault();
 
-// Get the email and verification code
-const email = document.getElementById("email").value;
+
+// Get the verification code
 const code = document.getElementById("code").value;
+
+
+// Show a temporary message
+message.textContent =
+    "Verifying your email...";
+
 
 try {
 
-    // Send the verification information to our live Render backend
+    // Send the saved email and code
+    // to our live Render backend
     const response = await fetch(
         "https://clkt-backend.onrender.com/api/users/verify",
         {
@@ -35,29 +61,43 @@ try {
         }
     );
 
+
     // Get the backend's response
     const data = await response.json();
+
 
     // Show the result
     message.textContent = data.message;
 
+
     // If verification succeeded
     if (response.ok) {
 
-        // Give the user a moment to see the success message
+        // Remove the saved verification email
+        localStorage.removeItem(
+            "clktVerificationEmail"
+        );
+
+
+        // Give the user a moment to see
+        // the success message
         setTimeout(function() {
 
             // Send them to the CLKT homepage
             window.location.href = "index.html";
 
         }, 1000);
+
     }
+
 
 } catch (error) {
 
-    // Show a friendly message if the backend cannot be reached
+    // Show a friendly message if
+    // the server cannot be reached
     message.textContent =
         "Unable to connect to CLKT. Please try again.";
+
 
     console.error(error);
 
@@ -71,21 +111,26 @@ try {
 resendButton.addEventListener("click", async function() {
 
 
-// Get the email
-const email = document.getElementById("email").value;
-
-// Make sure an email was entered
+// Make sure an email exists
 if (!email) {
 
     message.textContent =
-        "Please enter your email first.";
+        "Your registration session could not be found. Please register again.";
 
     return;
+
 }
+
+
+// Show a temporary message
+message.textContent =
+    "Sending a new verification code...";
+
 
 try {
 
-    // Ask the live backend to generate and send a new code
+    // Ask the live backend to generate
+    // and send a new code
     const response = await fetch(
         "https://clkt-backend.onrender.com/api/users/resend-verification",
         {
@@ -101,17 +146,22 @@ try {
         }
     );
 
+
     // Get the backend's response
     const data = await response.json();
+
 
     // Show the result
     message.textContent = data.message;
 
+
 } catch (error) {
 
-    // Show a friendly message if the backend cannot be reached
+    // Show a friendly message if
+    // the server cannot be reached
     message.textContent =
         "Unable to connect to CLKT. Please try again.";
+
 
     console.error(error);
 

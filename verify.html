@@ -4,13 +4,10 @@
 
 <head>
 
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Verify your CLKT account</title>
-
 
 <style>
 
@@ -21,7 +18,6 @@
 
     body {
         margin: 0;
-
         min-height: 100vh;
 
         display: flex;
@@ -38,7 +34,6 @@
 
     .container {
         width: 100%;
-
         max-width: 430px;
 
         padding: 20px;
@@ -52,7 +47,8 @@
 
         border-radius: 16px;
 
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        box-shadow:
+            0 8px 30px rgba(0, 0, 0, 0.08);
 
         text-align: center;
     }
@@ -67,7 +63,6 @@
         margin: 0 auto 22px;
 
         display: flex;
-
         align-items: center;
         justify-content: center;
 
@@ -256,113 +251,102 @@
 
 </style>
 
-
 </head>
 
 <body>
 
-
 <div class="container">
 
-    <div class="card">
+
+<div class="card">
 
 
-        <!-- VERIFICATION ICON -->
+    <!-- VERIFICATION ICON -->
 
-        <div class="icon">
-            ✓
-        </div>
-
-
-        <h1>
-            Verify your email
-        </h1>
+    <div class="icon">
+        ✓
+    </div>
 
 
-        <p class="description">
-            We've sent a 6-digit verification code to your email.
-            Enter it below to finish setting up your CLKT account.
+    <h1>
+        Verify your email
+    </h1>
+
+
+    <p class="description">
+        We've sent a 6-digit verification code to your email.
+        Enter it below to finish setting up your CLKT account.
+    </p>
+
+
+    <form id="verifyForm">
+
+
+        <label for="code">
+            Verification code
+        </label>
+
+
+        <input
+            type="text"
+            id="code"
+            placeholder="000000"
+            maxlength="6"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            required
+        >
+
+
+        <button
+            type="submit"
+            class="verify-button"
+        >
+            Verify email
+        </button>
+
+
+    </form>
+
+
+    <p id="message"></p>
+
+
+    <!-- RESEND -->
+
+    <div class="resend-section">
+
+        <p class="resend-text">
+            Didn't receive the code?
         </p>
 
 
-        <form id="verifyForm">
-
-
-            <label for="email">
-                Email
-            </label>
-
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                required
-            >
-
-
-            <label for="code">
-                Verification code
-            </label>
-
-
-            <input
-                type="text"
-                id="code"
-                placeholder="000000"
-                maxlength="6"
-                inputmode="numeric"
-                autocomplete="one-time-code"
-                required
-            >
-
-
-            <button
-                type="submit"
-                class="verify-button"
-            >
-                Verify email
-            </button>
-
-        </form>
-
-
-        <p id="message"></p>
-
-
-        <!-- RESEND -->
-
-        <div class="resend-section">
-
-            <p class="resend-text">
-                Didn't receive the code?
-            </p>
-
-
-            <button id="resendButton">
-                Resend verification code
-            </button>
-
-        </div>
-
-
-        <p class="security-note">
-            Verification codes expire after 10 minutes.
-        </p>
-
-
-        <div class="footer">
-            © 2026 CLKT. All rights reserved.
-        </div>
-
+        <button
+            id="resendButton"
+            type="button"
+        >
+            Resend verification code
+        </button>
 
     </div>
+
+
+    <p class="security-note">
+        Verification codes expire after 10 minutes.
+    </p>
+
+
+    <div class="footer">
+        © 2026 CLKT. All rights reserved.
+    </div>
+
 
 </div>
 
 
-<script src="verify.js"></script>
+</div>
 
+<script src="verify.js"></script>
 
 </body>
 
