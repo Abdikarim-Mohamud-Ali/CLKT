@@ -1,353 +1,452 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Verify your CLKT account</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<style>
+    <title>Verify Email - CLKT</title>
 
-    * {
-        box-sizing: border-box;
-    }
 
+    <style>
 
-    body {
-        margin: 0;
-        min-height: 100vh;
+        * {
+            box-sizing: border-box;
+        }
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
 
-        background: #f5f5f5;
+        body {
 
-        font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
 
-        color: #222;
-    }
+            min-height: 100vh;
 
+            display: flex;
 
-    .container {
-        width: 100%;
-        max-width: 430px;
+            align-items: center;
 
-        padding: 20px;
-    }
+            justify-content: center;
 
+            padding: 24px;
 
-    .card {
-        background: #ffffff;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-        padding: 38px 35px 32px;
+            background: #f5f5f5;
 
-        border-radius: 16px;
+            color: #171717;
 
-        box-shadow:
-            0 8px 30px rgba(0, 0, 0, 0.08);
+        }
 
-        text-align: center;
-    }
 
+        main {
 
-    /* VERIFICATION ICON */
+            width: 100%;
 
-    .icon {
-        width: 64px;
-        height: 64px;
+            max-width: 430px;
 
-        margin: 0 auto 22px;
+            background: white;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+            padding: 42px 36px;
 
-        background: #E00000;
+            border-radius: 18px;
 
-        color: #ffffff;
+            box-shadow:
+                0 12px 35px
+                rgba(0, 0, 0, 0.08);
 
-        border-radius: 50%;
+            text-align: center;
 
-        font-size: 28px;
+        }
 
-        font-weight: 700;
-    }
 
+        .logo {
 
-    h1 {
-        margin: 0 0 10px;
+            width: 105px;
 
-        font-size: 25px;
-    }
+            display: block;
 
+            margin:
+                0 auto 30px;
 
-    .description {
-        margin: 0 auto 28px;
+        }
 
-        max-width: 330px;
 
-        color: #777;
+        h1 {
 
-        font-size: 14px;
+            margin:
+                0 0 10px;
 
-        line-height: 1.6;
-    }
+            font-size: 28px;
 
+        }
 
-    form {
-        text-align: left;
-    }
 
+        .description {
 
-    label {
-        display: block;
+            margin:
+                0 0 28px;
 
-        margin-bottom: 7px;
+            color: #666;
 
-        font-size: 14px;
+            font-size: 15px;
 
-        font-weight: 600;
-    }
+            line-height: 1.5;
 
+        }
 
-    input {
-        width: 100%;
 
-        padding: 13px 14px;
+        .email-display {
 
-        margin-bottom: 18px;
+            margin:
+                0 0 24px;
 
-        border: 1px solid #d8d8d8;
+            padding:
+                12px;
 
-        border-radius: 8px;
+            background:
+                #f7f7f7;
 
-        font-size: 15px;
+            border-radius:
+                10px;
 
-        outline: none;
+            font-size:
+                14px;
 
-        transition: border-color 0.2s;
-    }
+            font-weight:
+                600;
 
+            word-break:
+                break-word;
 
-    input:focus {
-        border-color: #E00000;
-    }
+        }
 
 
-    #code {
-        text-align: center;
+        .form-group {
 
-        font-size: 22px;
+            margin-bottom:
+                18px;
 
-        font-weight: 700;
+            text-align:
+                left;
 
-        letter-spacing: 6px;
-    }
+        }
 
 
-    .verify-button {
-        width: 100%;
+        label {
 
-        padding: 14px;
+            display:
+                block;
 
-        border: none;
+            margin-bottom:
+                8px;
 
-        border-radius: 8px;
+            font-size:
+                14px;
 
-        background: #E00000;
+            font-weight:
+                600;
 
-        color: #ffffff;
+        }
 
-        font-size: 16px;
 
-        font-weight: 700;
+        input {
 
-        cursor: pointer;
+            width:
+                100%;
 
-        transition: background 0.2s;
-    }
+            height:
+                52px;
 
+            padding:
+                0 14px;
 
-    .verify-button:hover {
-        background: #c90000;
-    }
+            border:
+                1px solid #d6d6d6;
 
+            border-radius:
+                10px;
 
-    #message {
-        margin: 18px 0;
+            outline:
+                none;
 
-        text-align: center;
+            font-size:
+                20px;
 
-        font-size: 14px;
+            text-align:
+                center;
 
-        line-height: 1.5;
-    }
+            letter-spacing:
+                8px;
 
+        }
 
-    /* RESEND */
 
-    .resend-section {
-        margin-top: 25px;
+        input:focus {
 
-        padding-top: 22px;
+            border-color:
+                #e00000;
 
-        border-top: 1px solid #eeeeee;
-    }
+            box-shadow:
+                0 0 0 3px
+                rgba(224, 0, 0, 0.10);
 
+        }
 
-    .resend-text {
-        margin: 0 0 9px;
 
-        color: #777;
+        button {
 
-        font-size: 13px;
-    }
+            width:
+                100%;
 
+            height:
+                50px;
 
-    #resendButton {
-        border: none;
+            border:
+                none;
 
-        background: none;
+            border-radius:
+                10px;
 
-        color: #E00000;
+            background:
+                #e00000;
 
-        font-size: 14px;
+            color:
+                white;
 
-        font-weight: 700;
+            font-size:
+                16px;
 
-        cursor: pointer;
+            font-weight:
+                600;
 
-        padding: 5px;
-    }
+            cursor:
+                pointer;
 
+        }
 
-    #resendButton:hover {
-        text-decoration: underline;
-    }
 
+        button:hover {
 
-    .security-note {
-        margin-top: 20px;
+            background:
+                #c90000;
 
-        color: #999;
+        }
 
-        font-size: 12px;
 
-        line-height: 1.5;
-    }
+        button:disabled {
 
+            opacity:
+                0.6;
 
-    .footer {
-        margin-top: 22px;
+            cursor:
+                not-allowed;
 
-        color: #aaa;
+        }
 
-        font-size: 12px;
-    }
 
-</style>
+        .secondary-button {
+
+            margin-top:
+                12px;
+
+            background:
+                #eeeeee;
+
+            color:
+                #222;
+
+        }
+
+
+        .secondary-button:hover {
+
+            background:
+                #dddddd;
+
+        }
+
+
+        #message {
+
+            min-height:
+                22px;
+
+            margin:
+                18px 0 0;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.4;
+
+        }
+
+
+        .back-login {
+
+            display:
+                block;
+
+            margin-top:
+                24px;
+
+            color:
+                #e00000;
+
+            text-decoration:
+                none;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .back-login:hover {
+
+            text-decoration:
+                underline;
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            body {
+
+                padding:
+                    16px;
+
+            }
+
+
+            main {
+
+                padding:
+                    34px 24px;
+
+            }
+
+
+            h1 {
+
+                font-size:
+                    25px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<div class="container">
+
+    <main>
 
 
-<div class="card">
-
-
-    <!-- VERIFICATION ICON -->
-
-    <div class="icon">
-        ✓
-    </div>
-
-
-    <h1>
-        Verify your email
-    </h1>
-
-
-    <p class="description">
-        We've sent a 6-digit verification code to your email.
-        Enter it below to finish setting up your CLKT account.
-    </p>
-
-
-    <form id="verifyForm">
-
-
-        <label for="code">
-            Verification code
-        </label>
-
-
-        <input
-            type="text"
-            id="code"
-            placeholder="000000"
-            maxlength="6"
-            inputmode="numeric"
-            autocomplete="one-time-code"
-            required
+        <img
+            class="logo"
+            src="https://abdikarim-mohamud-ali.github.io/CLKT-ASSETS/clkt-logo.svg"
+            alt="CLKT"
         >
 
 
-        <button
-            type="submit"
-            class="verify-button"
-        >
-            Verify email
-        </button>
+        <h1>
+            Verify your email
+        </h1>
 
 
-    </form>
-
-
-    <p id="message"></p>
-
-
-    <!-- RESEND -->
-
-    <div class="resend-section">
-
-        <p class="resend-text">
-            Didn't receive the code?
+        <p class="description">
+            Enter the 6-digit code we sent to your email.
         </p>
 
 
-        <button
-            id="resendButton"
-            type="button"
+        <div
+            class="email-display"
+            id="emailDisplay"
         >
-            Resend verification code
-        </button>
-
-    </div>
+            Loading...
+        </div>
 
 
-    <p class="security-note">
-        Verification codes expire after 10 minutes.
-    </p>
+        <form id="verifyForm">
 
 
-    <div class="footer">
-        © 2026 CLKT. All rights reserved.
-    </div>
+            <div class="form-group">
+
+                <label for="code">
+                    Verification code
+                </label>
 
 
-</div>
+                <input
+                    type="text"
+                    id="code"
+                    placeholder="000000"
+                    maxlength="6"
+                    inputmode="numeric"
+                    autocomplete="one-time-code"
+                    required
+                >
+
+            </div>
 
 
-</div>
+            <button
+                type="submit"
+                id="verifyButton"
+            >
+                Verify email
+            </button>
 
-<script src="verify.js"></script>
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="resendButton"
+            >
+                Resend verification code
+            </button>
+
+
+            <p id="message"></p>
+
+
+        </form>
+
+
+        <a
+            class="back-login"
+            href="login.html"
+        >
+            Back to login
+        </a>
+
+
+    </main>
+
+
+    <script src="verify.js"></script>
+
 
 </body>
 
 </html>
+
