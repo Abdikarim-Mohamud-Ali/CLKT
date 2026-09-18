@@ -19,13 +19,11 @@ loginForm.addEventListener(
 
         event.preventDefault();
 
-
         const login =
             document.getElementById("login").value.trim();
 
         const password =
             document.getElementById("password").value;
-
 
         message.textContent =
             "Logging you in...";
@@ -35,7 +33,6 @@ loginForm.addEventListener(
 
         loginButton.disabled =
             true;
-
 
         try {
 
@@ -55,7 +52,6 @@ loginForm.addEventListener(
                 }
             );
 
-
             const data =
                 await response.json();
 
@@ -64,7 +60,6 @@ loginForm.addEventListener(
 
                 message.textContent =
                     data.message;
-
 
                 if (
                     response.status === 403 &&
@@ -77,18 +72,14 @@ loginForm.addEventListener(
                         login
                     );
 
-
                     resendVerificationLink.style.display =
                         "block";
-
                 }
-
 
                 loginButton.disabled =
                     false;
 
                 return;
-
             }
 
 
@@ -96,7 +87,6 @@ loginForm.addEventListener(
                 "clktToken",
                 data.token
             );
-
 
             localStorage.setItem(
                 "clktUser",
@@ -107,20 +97,15 @@ loginForm.addEventListener(
             window.location.href =
                 "index.html";
 
-
         } catch (error) {
 
             console.error(error);
-
 
             message.textContent =
                 "Unable to connect to CLKT. Please try again.";
 
             loginButton.disabled =
                 false;
-
         }
-
     }
 );
-

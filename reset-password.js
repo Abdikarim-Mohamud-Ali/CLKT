@@ -23,22 +23,27 @@ const login =
     );
 
 
-newPasswordInput.parentElement.style.display = "none";
+newPasswordInput.parentElement.style.display =
+    "none";
 
-confirmPasswordInput.parentElement.style.display = "none";
+confirmPasswordInput.parentElement.style.display =
+    "none";
 
-resetButton.style.display = "none";
+resetButton.style.display =
+    "none";
 
 
 const verifyButton =
     document.createElement("button");
 
-verifyButton.type = "button";
+verifyButton.type =
+    "button";
 
 verifyButton.textContent =
     "Verify code";
 
-verifyButton.style.marginTop = "10px";
+verifyButton.style.marginTop =
+    "10px";
 
 codeInput.parentElement.appendChild(
     verifyButton
@@ -59,7 +64,6 @@ verifyButton.addEventListener(
                 "Please enter the 6-digit verification code.";
 
             return;
-
         }
 
 
@@ -69,33 +73,34 @@ verifyButton.addEventListener(
                 "Your password reset session has expired. Please start again.";
 
             return;
-
         }
 
 
         message.textContent =
             "Verifying code...";
 
-        verifyButton.disabled = true;
+        verifyButton.disabled =
+            true;
 
 
         try {
 
-            const response = await fetch(
-                "https://clkt-backend.onrender.com/api/users/verify-reset-code",
-                {
-                    method: "POST",
+            const response =
+                await fetch(
+                    "https://clkt-backend.onrender.com/api/users/verify-reset-code",
+                    {
+                        method: "POST",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
 
-                    body: JSON.stringify({
-                        login: login,
-                        code: code
-                    })
-                }
-            );
+                        body: JSON.stringify({
+                            login: login,
+                            code: code
+                        })
+                    }
+                );
 
 
             const data =
@@ -107,17 +112,18 @@ verifyButton.addEventListener(
                 message.textContent =
                     data.message;
 
-                verifyButton.disabled = false;
+                verifyButton.disabled =
+                    false;
 
                 return;
-
             }
 
 
             message.textContent =
                 "Code verified. You can now choose your new password.";
 
-            codeInput.disabled = true;
+            codeInput.disabled =
+                true;
 
             verifyButton.style.display =
                 "none";
@@ -132,7 +138,6 @@ verifyButton.addEventListener(
             resetButton.style.display =
                 "block";
 
-
         } catch (error) {
 
             console.error(error);
@@ -141,10 +146,9 @@ verifyButton.addEventListener(
             message.textContent =
                 "Unable to connect to CLKT. Please try again.";
 
-            verifyButton.disabled = false;
-
+            verifyButton.disabled =
+                false;
         }
-
     }
 );
 
@@ -172,7 +176,6 @@ resetPasswordForm.addEventListener(
                 "Your password reset session has expired. Please start again.";
 
             return;
-
         }
 
 
@@ -182,7 +185,6 @@ resetPasswordForm.addEventListener(
                 "The passwords do not match.";
 
             return;
-
         }
 
 
@@ -192,34 +194,35 @@ resetPasswordForm.addEventListener(
                 "Password must be at least 8 characters.";
 
             return;
-
         }
 
 
         message.textContent =
             "Resetting your password...";
 
-        resetButton.disabled = true;
+        resetButton.disabled =
+            true;
 
 
         try {
 
-            const response = await fetch(
-                "https://clkt-backend.onrender.com/api/users/reset-password",
-                {
-                    method: "POST",
+            const response =
+                await fetch(
+                    "https://clkt-backend.onrender.com/api/users/reset-password",
+                    {
+                        method: "POST",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
 
-                    body: JSON.stringify({
-                        login: login,
-                        code: code,
-                        newPassword: newPassword
-                    })
-                }
-            );
+                        body: JSON.stringify({
+                            login: login,
+                            code: code,
+                            newPassword: newPassword
+                        })
+                    }
+                );
 
 
             const data =
@@ -231,10 +234,10 @@ resetPasswordForm.addEventListener(
                 message.textContent =
                     data.message;
 
-                resetButton.disabled = false;
+                resetButton.disabled =
+                    false;
 
                 return;
-
             }
 
 
@@ -263,12 +266,8 @@ resetPasswordForm.addEventListener(
             message.textContent =
                 "Unable to connect to CLKT. Please try again.";
 
-            resetButton.disabled = false;
-
+            resetButton.disabled =
+                false;
         }
-
     }
 );
-
-
-

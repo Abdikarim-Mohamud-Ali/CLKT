@@ -1,71 +1,81 @@
 
-const registerForm = document.getElementById("registerForm");
+const registerForm =
+    document.getElementById("registerForm");
 
-const message = document.getElementById("message");
-
-
-registerForm.addEventListener("submit", async function(event) {
-
-    event.preventDefault();
+const message =
+    document.getElementById("message");
 
 
-    const name = document.getElementById("name").value;
+registerForm.addEventListener(
+    "submit",
+    async function(event) {
 
-    const username = document.getElementById("username").value;
+        event.preventDefault();
 
-    const email = document.getElementById("email").value;
+        const name =
+            document.getElementById("name").value.trim();
 
-    const password = document.getElementById("password").value;
+        const username =
+            document.getElementById("username").value.trim();
 
+        const email =
+            document.getElementById("email").value.trim();
 
-    message.textContent = "Creating your CLKT account...";
-
-
-    try {
-
-        const response = await fetch(
-            "https://clkt-backend.onrender.com/api/users/register",
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    name: name,
-                    username: username,
-                    email: email,
-                    password: password
-                })
-            }
-        );
+        const password =
+            document.getElementById("password").value;
 
 
-        const data = await response.json();
+        message.textContent =
+            "Creating your CLKT account...";
 
 
-        message.textContent = data.message;
+        try {
 
+            const response = await fetch(
+                "https://clkt-backend.onrender.com/api/users/register",
+                {
+                    method: "POST",
 
-        if (response.ok) {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-            localStorage.setItem(
-                "clktVerificationEmail",
-                email
+                    body: JSON.stringify({
+                        name: name,
+                        username: username,
+                        email: email,
+                        password: password
+                    })
+                }
             );
 
 
-            window.location.href = "verify.html";
+            const data =
+                await response.json();
+
+
+            message.textContent =
+                data.message;
+
+
+            if (response.ok) {
+
+                localStorage.setItem(
+                    "clktVerificationEmail",
+                    email
+                );
+
+                window.location.href =
+                    "verify.html";
+            }
+
+
+        } catch (error) {
+
+            message.textContent =
+                "Unable to connect to CLKT. Please try again.";
+
+            console.error(error);
         }
-
-
-    } catch (error) {
-
-        message.textContent =
-            "Unable to connect to CLKT. Please try again.";
-
-        console.error(error);
     }
-
-})
+);

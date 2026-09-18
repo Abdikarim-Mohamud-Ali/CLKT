@@ -23,28 +23,31 @@ forgotPasswordForm.addEventListener(
         message.textContent =
             "Checking your account...";
 
-        continueButton.disabled = true;
+        continueButton.disabled =
+            true;
 
 
         try {
 
-            const response = await fetch(
-                "https://clkt-backend.onrender.com/api/users/forgot-password",
-                {
-                    method: "POST",
+            const response =
+                await fetch(
+                    "https://clkt-backend.onrender.com/api/users/forgot-password",
+                    {
+                        method: "POST",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
 
-                    body: JSON.stringify({
-                        login: login
-                    })
-                }
-            );
+                        body: JSON.stringify({
+                            login: login
+                        })
+                    }
+                );
 
 
-            const data = await response.json();
+            const data =
+                await response.json();
 
 
             if (!response.ok) {
@@ -52,10 +55,10 @@ forgotPasswordForm.addEventListener(
                 message.textContent =
                     data.message;
 
-                continueButton.disabled = false;
+                continueButton.disabled =
+                    false;
 
                 return;
-
             }
 
 
@@ -75,7 +78,6 @@ forgotPasswordForm.addEventListener(
 
                 message.textContent =
                     data.message;
-
             }
 
 
@@ -96,10 +98,8 @@ forgotPasswordForm.addEventListener(
                 "Unable to connect to CLKT. Please try again.";
 
 
-            continueButton.disabled = false;
-
+            continueButton.disabled =
+                false;
         }
-
     }
 );
-

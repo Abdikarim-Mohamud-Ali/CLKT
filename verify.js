@@ -29,14 +29,12 @@ if (!login) {
         "No verification account found.";
 
     verifyButton.disabled = true;
-
     resendButton.disabled = true;
 
 } else {
 
     emailDisplay.textContent =
         login;
-
 }
 
 
@@ -57,7 +55,6 @@ verifyForm.addEventListener(
                 "Please enter the 6-digit verification code.";
 
             return;
-
         }
 
 
@@ -67,7 +64,6 @@ verifyForm.addEventListener(
                 "Your verification session has expired. Please register or log in again.";
 
             return;
-
         }
 
 
@@ -110,7 +106,6 @@ verifyForm.addEventListener(
                     false;
 
                 return;
-
             }
 
 
@@ -145,9 +140,7 @@ verifyForm.addEventListener(
 
             verifyButton.disabled =
                 false;
-
         }
-
     }
 );
 
@@ -162,7 +155,6 @@ resendButton.addEventListener(
                 "Your verification session has expired. Please register or log in again.";
 
             return;
-
         }
 
 
@@ -206,7 +198,6 @@ resendButton.addEventListener(
                     false;
 
                 return;
-
             }
 
 
@@ -231,10 +222,6 @@ resendButton.addEventListener(
 
             resendButton.disabled =
                 false;
-
         }
-
     }
 );
-
-
