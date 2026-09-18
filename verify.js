@@ -1,171 +1,240 @@
-const verifyForm = document.getElementById("verifyForm");
 
-const message = document.getElementById("message");
+const verifyForm =
+    document.getElementById("verifyForm");
 
-const resendButton = document.getElementById("resendButton");
+const codeInput =
+    document.getElementById("code");
 
-// GET THE EMAIL SAVED DURING REGISTRATION
+const verifyButton =
+    document.getElementById("verifyButton");
 
-const email = localStorage.getItem("clktVerificationEmail");
+const resendButton =
+    document.getElementById("resendButton");
 
-// MAKE SURE AN EMAIL EXISTS
+const message =
+    document.getElementById("message");
 
-if (!email) {
+const emailDisplay =
+    document.getElementById("emailDisplay");
 
 
-message.textContent =
-    "Your registration session could not be found. Please register again.";
+const login =
+    localStorage.getItem("clktVerificationLogin") ||
+    localStorage.getItem("clktVerificationEmail");
 
-verifyForm.style.display = "none";
 
-resendButton.style.display = "none";
+if (!login) {
 
+    emailDisplay.textContent =
+        "No verification account found.";
+
+    verifyButton.disabled = true;
+
+    resendButton.disabled = true;
+
+} else {
+
+    emailDisplay.textContent =
+        login;
 
 }
 
-// VERIFY EMAIL
 
-verifyForm.addEventListener("submit", async function(event) {
+verifyForm.addEventListener(
+    "submit",
+    async function(event) {
 
-
-// Stop the browser from refreshing the page
-event.preventDefault();
-
-
-// Get the verification code
-const code = document.getElementById("code").value;
+        event.preventDefault();
 
 
-// Show a temporary message
-message.textContent =
-    "Verifying your email...";
+        const code =
+            codeInput.value.trim();
 
 
-try {
+        if (code.length !== 6) {
 
-    // Send the saved email and code
-    // to our live Render backend
-    const response = await fetch(
-        "https://clkt-backend.onrender.com/api/users/verify",
-        {
-            method: "POST",
+            message.textContent =
+                "Please enter the 6-digit verification code.";
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+            return;
 
-            body: JSON.stringify({
-                email: email,
-                code: code
-            })
         }
-    );
 
 
-    // Get the backend's response
-    const data = await response.json();
+        if (!login) {
+
+            message.textContent =
+                "Your verification session has expired. Please register or log in again.";
+
+            return;
+
+        }
 
 
-    // Show the result
-    message.textContent = data.message;
+        message.textContent =
+            "Verifying your email...";
+
+        verifyButton.disabled = true;
 
 
-    // If verification succeeded
-    if (response.ok) {
+        try {
 
-        // Remove the saved verification email
-        localStorage.removeItem(
-            "clktVerificationEmail"
-        );
+            const response =
+                await fetch(
+                    "https://clkt-backend.onrender.com/api/users/verify",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            login: login,
+                            code: code
+                        })
+                    }
+                );
 
 
-        // Give the user a moment to see
-        // the success message
-        setTimeout(function() {
+            const data =
+                await response.json();
 
-            // Send them to the CLKT homepage
-            window.location.href = "index.html";
 
-        }, 1000);
+            if (!response.ok) {
+
+                message.textContent =
+                    data.message;
+
+                verifyButton.disabled =
+                    false;
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Email verified successfully! Redirecting to login...";
+
+
+            localStorage.removeItem(
+                "clktVerificationEmail"
+            );
+
+            localStorage.removeItem(
+                "clktVerificationLogin"
+            );
+
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "login.html";
+
+            }, 1500);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            message.textContent =
+                "Unable to connect to CLKT. Please try again.";
+
+            verifyButton.disabled =
+                false;
+
+        }
 
     }
+);
 
 
-} catch (error) {
+resendButton.addEventListener(
+    "click",
+    async function() {
 
-    // Show a friendly message if
-    // the server cannot be reached
-    message.textContent =
-        "Unable to connect to CLKT. Please try again.";
+        if (!login) {
 
+            message.textContent =
+                "Your verification session has expired. Please register or log in again.";
 
-    console.error(error);
+            return;
 
-}
-
-
-});
-
-// RESEND VERIFICATION CODE
-
-resendButton.addEventListener("click", async function() {
-
-
-// Make sure an email exists
-if (!email) {
-
-    message.textContent =
-        "Your registration session could not be found. Please register again.";
-
-    return;
-
-}
-
-
-// Show a temporary message
-message.textContent =
-    "Sending a new verification code...";
-
-
-try {
-
-    // Ask the live backend to generate
-    // and send a new code
-    const response = await fetch(
-        "https://clkt-backend.onrender.com/api/users/resend-verification",
-        {
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                email: email
-            })
         }
-    );
 
 
-    // Get the backend's response
-    const data = await response.json();
+        message.textContent =
+            "Sending a new verification code...";
+
+        resendButton.disabled =
+            true;
 
 
-    // Show the result
-    message.textContent = data.message;
+        try {
+
+            const response =
+                await fetch(
+                    "https://clkt-backend.onrender.com/api/users/resend-verification",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            login: login
+                        })
+                    }
+                );
 
 
-} catch (error) {
-
-    // Show a friendly message if
-    // the server cannot be reached
-    message.textContent =
-        "Unable to connect to CLKT. Please try again.";
+            const data =
+                await response.json();
 
 
-    console.error(error);
+            message.textContent =
+                data.message;
 
-}
+
+            if (!response.ok) {
+
+                resendButton.disabled =
+                    false;
+
+                return;
+
+            }
 
 
-});
+            codeInput.value = "";
+
+
+            setTimeout(function() {
+
+                resendButton.disabled =
+                    false;
+
+            }, 3000);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            message.textContent =
+                "Unable to connect to CLKT. Please try again.";
+
+            resendButton.disabled =
+                false;
+
+        }
+
+    }
+);
+
+
