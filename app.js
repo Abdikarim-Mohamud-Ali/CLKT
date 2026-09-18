@@ -822,3 +822,76 @@ window.addEventListener(
 console.log(
     "CLKT.com JavaScript loaded successfully."
 );
+async function loadPosts() {
+
+    const postsContainer =
+        document.getElementById("postsContainer");
+
+    if (!postsContainer) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                "https://clkt-backend.onrender.com/api/posts"
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message || "Unable to load posts."
+            );
+
+        }
+
+        postsContainer.innerHTML = "";
+
+        if (
+            !data.posts ||
+            data.posts.length === 0
+        ) {
+
+            postsContainer.innerHTML =
+                "<p>No posts yet.</p>";
+
+            return;
+        }
+
+        data.posts.forEach(function(post) {
+
+            const postElement =
+                document.createElement("div");
+
+            postElement.className =
+                "post-card";
+
+            postElement.innerHTML = `
+                <h3>${post.user.name}</h3>
+                <p>@${post.user.username}</p>
+                <p>${post.text || ""}</p>
+            `;
+
+            postsContainer.appendChild(
+                postElement
+            );
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load posts:",
+            error
+        );
+
+        postsContainer.innerHTML =
+            "<p>Unable to load posts.</p>";
+    }
+}
+
+loadPosts();
